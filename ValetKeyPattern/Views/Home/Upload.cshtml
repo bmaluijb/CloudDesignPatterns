@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Upload files";
+}
+
+
+<h2>Upload files to Azure Storage using SaS</h2>
+
+<fieldset>
+    <legend>Upload files</legend>
+    <input type="file" id="fileControl" multiple /><br />
+    Progress: <progress id="uploadProgress" value="0" max="100"></progress><br /><br />
+
+    <input type="button" id="btnUpload" value="Upload files" />
+</fieldset>   
+
+@section scripts{
+
+    <script>
+        function upload(file, type, url) {
+
+            var ajaxRequest = new XMLHttpRequest();
+
+            //attach errorhandler to request
+            ajaxRequest.onerror = function () {
+                alert("Sorry, something went wrong");
+            };
+
+            //attach progress handler to request
+            ajaxRequest.upload.onprogress = function (e) {
+                var percentComplete = (e.loaded / e.total) * 100;
+
+                uploadProgress.value = percentComplete;
+                if (percentComplete == 100)
+                    alert("Upload done!")
+            };
+
+            //create request with SaS URL
+            ajaxRequest.open('PUT', url, true);
+            ajaxRequest.setRequestHeader('Content-Type', type);
+            ajaxRequest.setRequestHeader('x-ms-blob-type', 'BlockBlob');
+            ajaxRequest.send(file);
+        }
+
+        //When the button is clicked
+        $("#btnUpload").click(function () {
+
+            var files = fileControl.files;
+            //loop through all the files
+            for (var i = 0, file; file = files[i]; i++) {
+
+                var reader = new FileReader();
+                reader.onloadend = (function (theFile) {
+                    return function (e) {
+                        $.ajax({
+                            //call the api to get sas
+                            type: 'GET',
+                            url: '/api/sas?blobName=' + theFile.name,
+                            success: function (res, status, xhr) {
+                                //if we have sas, execute Upload
+                                upload(e.target.result, theFile.type, res);
+                            },
+                            error: function (res, status, xhr) {
+                                alert("Can't get the Shared Access Signature");
+                            }
+                        });
+                    };
+                })(file);
+                reader.readAsArrayBuffer(file);
+            }
+        });
+
+    </script>
+}
