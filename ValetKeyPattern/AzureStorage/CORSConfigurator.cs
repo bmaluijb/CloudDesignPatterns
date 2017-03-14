@@ -8,12 +8,10 @@ namespace ValetKeyPattern.AzureStorage
 {
     public class CORSConfigurator : ICORSConfigurator
     {
-        private readonly AppSettings _appSettings;
         private readonly ConnectionStrings _connectionStrings;
 
-        public CORSConfigurator(IOptions<AppSettings> appSettings, IOptions<ConnectionStrings> connectionStrings)
+        public CORSConfigurator(IOptions<ConnectionStrings> connectionStrings)
         {
-            _appSettings = appSettings.Value;
             _connectionStrings = connectionStrings.Value;
         }
         public void EnableCORS()
