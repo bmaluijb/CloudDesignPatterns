@@ -2,9 +2,6 @@
 
 ![enter image description here](https://www.pluralsight.com/content/dam/pluralsight/newsroom/brand-assets/logos/pluralsight-logo-vrt-color-2.png)  
 
-### The Pluralsight discussion platform is not working
-If you have any questions about this course, please comment <a href="https://www.azurebarry.com/do-you-need-help-with-my-pluralsight-courses/" target="_blank">on the blog post here</a> and I will help you as soon as possible. 
-
 Hi! 
 
 Welcome to the GitHub repository of the cloud design patterns.
