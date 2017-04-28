@@ -23,12 +23,37 @@ The solution consists of:
       - Controllers/SasController.cs
       - Views/Upload.cshtml
 - CircuitBreakerPattern
- 	- .NET 4.5.2 Concole Application
+ 	- .NET 4.5.2 Console Application
   - The pattern is implemented in
     - All classes in the CircuitBreaker folder
     - Program.cs
+ - QueueBasedLoadLevelingPatternApplication    
+ 	- .NET 4.5.2 Console Application
+	- One of the QueueBasedLoadLevelingPattern applications, this one acts as the application calling a service
+	- The pattern is implemented in
+	  - Program.cs
+ - QueueBasedLoadLevelingPatternLibary    
+ 	- .NET 4.5.2 Console Application
+	- One of the QueueBasedLoadLevelingPattern applications, this is a library containing a service that talks to Azure Storage
+ - QueueBasedLoadLevelingPatternService    
+ 	- .NET 4.5.2 Console Application
+	- One of the QueueBasedLoadLevelingPattern applications, this is the application that picks up messages from the Azure queue and processes them
+	- The pattern is implemented in
+	  - Program.cs
+ - QueueBasedLoadLevelingPatternWebJob    
+ 	- An Azure WebJob project
+	- One of the QueueBasedLoadLevelingPattern applications, this is the application that picks up messages from the Azure queue and processes them, showing a trigger that is triggered by new messages on the queue
+	- The pattern is implemented in
+	  - Functions.cs	  
+ - RetryPattern    
+ 	- .NET 4.5.2 Console Application
+	- The pattern is implemented in
+	  - StorageService.cs	  
 
-All of the projects can be run independently. 
+All of the projects can be run independently.
+
+The QueueBasedLoadLevelingPattern projects make no sense can be run independently, but serve little purpose doing so.
+Please watch the Queue-based loadleveling pattern module for more information.
 
 Getting started
 ---------------
@@ -51,6 +76,24 @@ Select the example that you want to run and set it as the startup project.
 To run the ValetKeyPattern project, you need an Azure Storage account. Find out more [here](https://www.youtube.com/watch?v=tSGSfOAiNrw).
 When you have one, you need to put the connectionstring for the storage account in either the **appsettings.json** or **appsettings.development.json** file, in the **AzureStorageConnection** setting.
 
-It should look like this: "DefaultEndpointsProtocol=https;AccountName=saspluralsight;AccountKey=WCxWWe1q6w0EHByo+==;"
+The connectionstring should look like this:
+"DefaultEndpointsProtocol=https;AccountName=saspluralsight;AccountKey=WCxWWe1q6w0EHByo+==;"
 
+**Running the QueueBasedLoadLevelingPattern projects**
 
+To run these projects, you need to indicate an Azure Storage account where in which a queue will be created.
+When you have an Azure Storage Account, you need to put the connectionstring for the storage account in the App.config files of the following projects:
+  - QueueBasedLoadLevelingPatternApplication
+  - QueueBasedLoadLevelingPatternService
+  - QueueBasedLoadLevelingPatternWebJob
+  
+The connectionstring should look like this:
+"DefaultEndpointsProtocol=https;AccountName=saspluralsight;AccountKey=WCxWWe1q6w0EHByo+==;"  
+  
+**Running the RetryPattern project**
+
+To run the RetryPattern project, you need an Azure Storage account. Find out more [here](https://www.youtube.com/watch?v=tSGSfOAiNrw).
+When you have one, you need to put the connectionstring for the storage account in the App.config file.
+
+The connectionstring should look like this:
+"DefaultEndpointsProtocol=https;AccountName=saspluralsight;AccountKey=WCxWWe1q6w0EHByo+==;"
