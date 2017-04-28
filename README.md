@@ -2,9 +2,6 @@
 
 ![enter image description here](https://www.pluralsight.com/content/dam/pluralsight/newsroom/brand-assets/logos/pluralsight-logo-vrt-color-2.png)  
 
-### The Pluralsight discussion platform is not working
-If you have any questions about this course, please comment <a href="https://www.azurebarry.com/do-you-need-help-with-my-pluralsight-courses/" target="_blank">on the blog post here</a> and I will help you as soon as possible. 
-
 Hi! 
 
 Welcome to the GitHub repository of the cloud design patterns.
@@ -25,6 +22,11 @@ The solution consists of:
       - AzureStorage/CORSConfigurator.cs
       - Controllers/SasController.cs
       - Views/Upload.cshtml
+- CircuitBreakerPattern
+ 	- .NET 4.5.2 Concole Application
+  - The pattern is implemented in
+    - All classes in the CircuitBreaker folder
+    - Program.cs
 
 All of the projects can be run independently. 
 
@@ -44,7 +46,7 @@ Make sure that you have the following:
 Download a copy of the code and build it.
 Select the example that you want to run and set it as the startup project.
 
-**Running the ValetKeyPattern project **
+**Running the ValetKeyPattern project**
 
 To run the ValetKeyPattern project, you need an Azure Storage account. Find out more [here](https://www.youtube.com/watch?v=tSGSfOAiNrw).
 When you have one, you need to put the connectionstring for the storage account in either the **appsettings.json** or **appsettings.development.json** file, in the **AzureStorageConnection** setting.
