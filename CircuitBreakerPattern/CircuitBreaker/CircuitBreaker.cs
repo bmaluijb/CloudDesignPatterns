@@ -4,7 +4,8 @@ namespace CircuitBreakerPattern
 {
     public class CircuitBreaker
     {
-        private readonly ICircuitBreakerStateStore stateStore = new CircuitBreakerStateStore();
+        private readonly ICircuitBreakerStateStore stateStore 
+            = new CircuitBreakerStateStore();
 
         //The time that the breaker should remain open, 
         //before testing it in the halfopen state
@@ -24,7 +25,6 @@ namespace CircuitBreakerPattern
                     //You could do more complex tests
                     try
                     {
-
                         stateStore.HalfOpen();
 
                         //Try the call
@@ -34,7 +34,6 @@ namespace CircuitBreakerPattern
                         //is up and running so we rest the circuit breaker to the closed state
                         stateStore.Reset();
                         return;
-
                     }
                     catch (Exception ex)
                     {
