@@ -7,8 +7,6 @@ Hi!
 Welcome to the GitHub repository of the cloud design patterns.
 This repository contains the examples for the Pluralsight course series: [Cloud Design Patterns for Azure](https://app.pluralsight.com/profile/author/barry-luijbregts).
 
-The repository will keep growing until all of the courses of the series are released.
-
 The solution consists of:
 
 - AutomaticScalingPattern
